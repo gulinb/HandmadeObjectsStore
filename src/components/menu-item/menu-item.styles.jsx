@@ -1,4 +1,6 @@
-.menu-item {
+import styled from 'styled-components'
+
+export const MenuItemContainer = styled.div`
     min-width: 30%;
     height: 300px;
     flex: 1 1 auto;
@@ -33,15 +35,14 @@
     &:last-child {
       margin-left: 7.5px;
     }
-
-    .background-image{
+`
+export const BackgroundImage = styled.div`
       background-position: center;
       background-size: cover;
       width: 100%;
-      height: 100%; 
-    }
-  
-    .content {
+      height: 100%;
+`
+export const ContentStyle = styled.div`
       height: 120px;
       padding: 0 45px;
       display: flex;
@@ -52,20 +53,15 @@
       background-color: white;
       opacity: 0.7;
       position: absolute;
-  
-      .title {
+`
+export const TitleStyle = styled.h1`
         font-weight: bold;
         margin-bottom: 6px;
         font-size: 22px;
         color: #4a4a4a;
-      }
-  
-      .subtitle {
+`
+
+export const SubtitleStyle = styled.span`
         font-weight: lighter;
         font-size: 16px;
-      }
-    }
-
-
-  }
-
+`

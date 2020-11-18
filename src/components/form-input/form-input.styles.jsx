@@ -1,17 +1,21 @@
-$sub-color: grey;
-$main-color: black;
+import styled, {css} from 'styled-components'
 
-@mixin shrinkLabel {
+const shrinkLabelStyles = css`
   top: -14px;
   font-size: 12px;
-  color: $main-color;
-}
+  color: black;
+`
 
-.group {
+export const GroupContainer = styled.div`
   position: relative;
   margin: 45px 0;
 
-  .form-input {
+  input[type='password'] {
+    letter-spacing: 0.3em;
+  }
+`
+
+export const FormInputStyle = styled.input`
     background: none;
     background-color: white;
     color: $sub-color;
@@ -21,23 +25,19 @@ $main-color: black;
     width: 100%;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid $sub-color;
+    border-bottom: 1px solid grey;
     margin: 25px 0;
 
     &:focus {
       outline: none;
     }
 
-    &:focus ~ .form-input-label {
-      @include shrinkLabel();
+    &:focus ~ label {
+      ${shrinkLabelStyles};
     }
-  }
+`
 
-  input[type='password'] {
-    letter-spacing: 0.3em;
-  }
-
-  .form-input-label {
+export const LabelStyle = styled.label`
     color: $sub-color;
     font-size: 16px;
     font-weight: normal;
@@ -48,7 +48,7 @@ $main-color: black;
     transition: 300ms ease all;
 
     &.shrink {
-      @include shrinkLabel();
+      ${shrinkLabelStyles};
     }
-  }
-}
+`
+
