@@ -23,7 +23,6 @@ export const Name = styled.span`
 export const Quantity = styled.span`
     width: 23%;
     display: flex;
-    padding-left: 20px;
 `
 export const Arrow = styled.div`
     cursor: pointer;

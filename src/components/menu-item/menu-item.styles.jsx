@@ -35,6 +35,11 @@ export const MenuItemContainer = styled.div`
     &:last-child {
       margin-left: 7.5px;
     }
+
+    @media screen and (max-width: 800px){
+      height: 200px;
+      min-width: 80%
+    }
 `
 export const BackgroundImage = styled.div`
       background-position: center;
@@ -43,8 +48,8 @@ export const BackgroundImage = styled.div`
       height: 100%;
 `
 export const ContentStyle = styled.div`
-      height: 120px;
-      padding: 0 45px;
+      height: 100px;
+      width:150px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -53,6 +58,11 @@ export const ContentStyle = styled.div`
       background-color: white;
       opacity: 0.7;
       position: absolute;
+
+      @media screen and (max-width: 450px){
+        min-width: 30%;
+        flex: 1 1 auto;
+      }
 `
 export const TitleStyle = styled.h1`
         font-weight: bold;

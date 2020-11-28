@@ -14,8 +14,17 @@ export const CollectionItemStyles = styled.div`
       .image {
         opacity: 0.85;
       }
-
     }
+
+    
+    @media screen and (max-width: 800px){
+          width: 45vw;
+          height: 300px;
+      }
+
+      @media screen and (max-width: 390px){
+          width: 90vw;
+      }
 `
 export const Image = styled.div`
       width: 100%;
@@ -33,11 +42,11 @@ export const CollectionFooter = styled.div`
       font-size: 18px;
 `
 export const Name = styled.span`
-        width: 90%;
+        width: 75%;
         margin-bottom: 15px;
 `
 export const Price = styled.span`
-        width: 20%;
+        width: 25%;
         text-align: right;
 `
 export const CustomButtonStyle = styled(CustomButton)`
@@ -46,4 +55,8 @@ export const CustomButtonStyle = styled(CustomButton)`
       position: absolute;
       align-content: center;
       top: 300px;
+
+      @media screen and (max-width: 800px){
+            top: 200px;
+      }
 `

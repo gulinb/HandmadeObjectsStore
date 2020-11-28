@@ -11,6 +11,11 @@ export const CheckoutPageContainer = styled.div`
     button{
       margin-left: auto;
       margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    @media screen and (max-width: 1000px){
+          width: 90vw;
     }
 `
 export const CheckoutHeader = styled.div`
