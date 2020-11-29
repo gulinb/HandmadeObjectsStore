@@ -12,7 +12,6 @@ export const CartDropdownStyles = styled.div`
     top: 90px;
     right: 40px;
     z-index: 5;
-    overflow: scroll;
 `
 
 export const CartItemsStyles = styled.div`
