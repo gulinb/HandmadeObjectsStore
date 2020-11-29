@@ -4,7 +4,7 @@ import CustomButton from '../custom-button/custom-button.component'
 
 import {auth, createUserProfileDocument} from '../../firebase/firebase.utils'
 
-import { SignUpStyle, TitleStyle} from './sign-up.styles'
+import { SignUpStyle, TitleStyle, FormSpan} from './sign-up.styles'
 
 class SignUp extends React.Component{
 
@@ -56,7 +56,7 @@ class SignUp extends React.Component{
         return(
             <SignUpStyle>
                 <TitleStyle>I do not have an account</TitleStyle>
-                <span>Sign up with your email and password</span>
+                <FormSpan>Sign up with your email and password</FormSpan>
                 <form onSubmit={this.handleSubmit}>
                     <FormInput
                         type='text'

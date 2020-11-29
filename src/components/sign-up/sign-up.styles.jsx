@@ -10,3 +10,7 @@ export const SignUpStyle = styled.div`
 export const TitleStyle = styled.h2`
         margin: 20px 0 10px 0;
 `
+
+export const FormSpan = styled.span`
+        margin-top: 10px;
+`
