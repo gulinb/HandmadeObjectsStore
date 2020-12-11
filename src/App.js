@@ -8,11 +8,13 @@ import ShopPage from './pages/shop/shop.component'
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 import CheckOutPage from './pages/checkout/checkout.component'
 import Header from './components/header/header.component'
+import Footer from './components/footer/footer.component'
 
 import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 import {setCurrentUser} from './redux/user/user.actions'
 import {selectCurrentUser} from './redux/user/user.selector'
 import {createStructuredSelector} from 'reselect'
+import TermeniSiConditiiPage from './pages/termeni-si-conditii-page/termeni-si-conditii-page.component'
 
 
 class App extends React.Component {
@@ -55,7 +57,9 @@ class App extends React.Component {
           <Route exact path='/signin' 
                  render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUp />) } />
           <Route path='/checkout' component={CheckOutPage} />
+          <Route path='/termeni_si_conditii' component={TermeniSiConditiiPage} />
         </Switch>
+        <Footer />
       </div>
     );
   }

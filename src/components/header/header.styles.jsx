@@ -11,16 +11,38 @@ export const HeaderContainer = styled.div`
     @media screen and (max-width: 800px){
           height: 60px;
           padding: 10px;
-          margin-bottom: 20px;
+          margin-bottom: 50px;
     }
+
+    @media screen and (max-width: 600px){
+          margin-bottom: 0;
+    }
+`
+
+export const TitleContainer = styled.div`
+      margin-left: 20px;
+
+      @media screen and (max-width: 600px){
+            display: none;
+      }
+`
+
+export const Title = styled.h1`
+      margin: 0;
+`
+
+export const SubTitle = styled.h3`
+      margin-top: 0;
+      text-align: center;
 `
 
 export const LogoContainer = styled(Link)`
       height: 100%;
-      width: 70px;
-      padding: 25px;
+      width: 260px;
+      padding: 25px 0 25px 25px;
+      display: flex;
 
-      @media screen and (max-width: 800px){
+      @media screen and (max-width: 600px){
             width: 50px;
             padding: 0;
       }

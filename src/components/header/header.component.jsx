@@ -8,7 +8,7 @@ import {createStructuredSelector} from 'reselect'
 import {selectCartHidden} from '../../redux/cart/cart.selector'
 import {selectCurrentUser} from '../../redux/user/user.selector'
 
-import {HeaderContainer, LogoContainer, OptionsContainer, OptionLink} from './header.styles'
+import {HeaderContainer, LogoContainer, OptionsContainer, OptionLink, Title, SubTitle, TitleContainer} from './header.styles'
 
 
 const Header =({currentUser, hidden}) => (
@@ -16,6 +16,10 @@ const Header =({currentUser, hidden}) => (
     <HeaderContainer>
         <LogoContainer to='/'>
             <Logo />
+            <TitleContainer>
+                <Title> O R F E V R U </Title>
+                <SubTitle>Obiecte handmade</SubTitle>
+            </TitleContainer>
         </LogoContainer>
         <OptionsContainer>
             <OptionLink to='/shop'>
