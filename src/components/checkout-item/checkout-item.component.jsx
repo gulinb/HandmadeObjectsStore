@@ -9,7 +9,7 @@ const CheckoutItem = ({cartItem, clearItem, addItem, removeItem}) => {
 return (
     <CheckoutItemStyles>
         <ImageContainer>
-            <Image src={imageUrl} alt='item' />
+            <Image src={imageUrl} alt='element' />
         </ImageContainer>
         <Name>{name}</Name>
         <Quantity>
@@ -24,9 +24,9 @@ return (
 }
 
 const mapDispatchToProps = dispatch => ({
-    clearItem: item => dispatch(clearItemFromCart(item)),
-    removeItem: item => dispatch(removeItem(item)),
-    addItem: item => dispatch(addItem(item))
+    clearItem: element => dispatch(clearItemFromCart(element)),
+    removeItem: element => dispatch(removeItem(element)),
+    addItem: element => dispatch(addItem(element))
 })
 
 export default connect(null, mapDispatchToProps)(CheckoutItem)

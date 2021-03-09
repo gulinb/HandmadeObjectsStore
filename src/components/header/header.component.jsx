@@ -32,7 +32,7 @@ const Header =({currentUser, hidden}) => (
                 currentUser ?
                 <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink>
                 :
-                <OptionLink to='/signin'>SIGN IN</OptionLink>
+                null
             }
             <CartIcon />
         </OptionsContainer>
@@ -43,9 +43,9 @@ const Header =({currentUser, hidden}) => (
     </HeaderContainer>
 )
 
-const mapStatetoProps = createStructuredSelector ({
+const mapStateToProps = createStructuredSelector ({
     currentUser: selectCurrentUser,
     hidden: selectCartHidden
 })
 
-export default connect(mapStatetoProps)(Header)
+export default connect(mapStateToProps)(Header)

@@ -1,4 +1,4 @@
-.sign-in-and-sign-up {
+.sign-in {
     width: 850px;
     display: flex;
     justify-content: space-between;
@@ -12,5 +12,20 @@
 
     @media screen and (max-width: 390px){
         grid-template-columns: 1fr;  
+    }
+}
+
+.options{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+
+
+    @media screen and (max-width: 800px){
+        width: 90vw;
+        display: block;
+        grid-template-columns: 1fr; 
+        align-content: center;  
     }
 }

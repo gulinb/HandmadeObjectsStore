@@ -4,7 +4,9 @@ import ShopActionTypes from './shop.types'
 const INITIAL_STATE = {
     collections: null,
     isFetching: false,
-    errorMessage: undefined
+    errorMessage: undefined,
+    productDetails: true,
+    selectedElement: {}
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +28,16 @@ const shopReducer = (state = INITIAL_STATE, action) => {
                 isFetching: false,
                 errorMessage: action.payload
             }
+        case ShopActionTypes.TOGGLE_PRODUCT_DETAILS:
+            return {
+                ...state,
+                productDetails: !state.productDetails
+            }
+        case ShopActionTypes.SELECTED_ELEMENT:
+            return{
+                ...state,
+                selectedElement: action.payload
+            }    
 
         default:
             return state

@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 
 import {MenuItemContainer, BackgroundImage, ContentStyle, TitleStyle, SubtitleStyle} from './menu-item.styles'
 
-const MenuItem = ({title, imageUrl, size, history, linkUrl, match}) => (
+const MenuItem = ({title, imageUrl, history, linkUrl, match}) => (
 
     <MenuItemContainer
         onClick={() => history.push(`${match.url}${linkUrl}`)}

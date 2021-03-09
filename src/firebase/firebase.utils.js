@@ -13,68 +13,83 @@ const config = {
     appId: "1:405984893709:web:728c91c910a480d282ee44"
   }
 
-  export const createUserProfileDocument = async (userAuth, additionalData) => {
-
-    if(!userAuth) return;
-
-    const userRef = firestore.doc(`users/${userAuth.uid}`)
-    
-    const snapShot = await userRef.get()
-    
-    if(!snapShot.exists){
-        const {displayName, email} = userAuth
-        const createdAt = new Date()
-
-        try{
-            await userRef.set({
-                displayName,
-                email,
-                createdAt,
-                ...additionalData
-            })
-        }catch(error){
-            console.log('error creating user', error.message)
-        }
-    }
-    return userRef
-  }
 
   export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-      const collectionRef = firestore.collection(collectionKey)
-      
-      const batch = firestore.batch()
-      objectsToAdd.forEach(obj => {
-          const newDocRef = collectionRef.doc()
-          batch.set(newDocRef, obj)
-      })
+    const collectionRef = firestore.collection(collectionKey)
+    
+    const batch = firestore.batch()
+    objectsToAdd.forEach(obj => {
+        const newDocRef = collectionRef.doc()
+        batch.set(newDocRef, obj)
+    })
 
-      return await batch.commit()
-  }
+    return await batch.commit()
+}
 
   export const convertCollectionsSnapShotToMap = (collections) => {
-      const transformedCollections = collections.docs.map(doc => {
-          const {title, items} = doc.data()
 
+        const transformedCollections = collections.docs.map(doc => {
+
+        const {title, elemente}= doc.data()
           return {
-              routeName: encodeURI(title.toLowerCase()),
-              id: doc.id,
               title,
-              items
+              elemente,
+              id: doc.id,
+              routeName: encodeURI(title.toLowerCase())
+
           }
       })
-      return transformedCollections.reduce((accumulator, collection) =>{
-          accumulator[collection.title.toLowerCase()] = collection
-          return accumulator
-      }, {})
+   
+    return transformedCollections.reduce((accumulator, collection) =>{
+        accumulator[collection.title.toLowerCase()] = collection
+        return accumulator
+    }, {})
   }
+
+  export const addElement = async (collectionId, element) => {
+    
+    
+    const elementRef = firestore.collection('produse').doc(`${collectionId}`)
+    const elemente1 = await elementRef.get()
+    const elemente = elemente1.data().elemente
+    return (
+      elementRef.update({
+      elemente : [...elemente, element]
+  })
+  .then(function() {
+      console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+      console.error("Error writing document: ", error);
+  })
+  )
+
+}
+
+
+export const removeElement = async (collectionId, element) => {
+  
+  const elementRef = firestore.collection('produse').doc(`${collectionId}`)
+  const elemente1 = await elementRef.get()
+  const elemente = elemente1.data().elemente
+  return (
+    elementRef.update({
+      elemente : elemente.filter(item => item.name !== element.name)
+    })
+    .then(function() {
+      console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+      console.error("Error writing document: ", error);
+    })
+    )
+    
+  }
+  
 
   firebase.initializeApp(config)
 
   export const auth = firebase.auth()
   export const firestore = firebase.firestore()
-
-  const provider = new firebase.auth.GoogleAuthProvider()
-  provider.setCustomParameters({prompt: 'select_account'})
-  export const signInWithGoogle = () => auth.signInWithPopup(provider)
 
   export default firebase

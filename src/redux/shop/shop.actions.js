@@ -17,7 +17,7 @@ export const fetchCollectionsFailure = error => ({
 
 export const fetchCollectionsStartAsync = () => {
     return dispatch => {
-        const collectionRef = firestore.collection('collections')
+        const collectionRef = firestore.collection('produse')
         dispatch(fetchCollectionsStart())
 
         collectionRef.get().then(snapShot => {
@@ -26,3 +26,12 @@ export const fetchCollectionsStartAsync = () => {
         }).catch(error => dispatch(fetchCollectionsFailure(error.message)))
     }
 }
+
+export const toggleProductDetails = () => ({
+    type: ShopActionTypes.TOGGLE_PRODUCT_DETAILS
+})
+
+export const selectElement = element => ({
+    type: ShopActionTypes.SELECTED_ELEMENT,
+    payload: element
+})
