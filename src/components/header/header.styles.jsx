@@ -22,7 +22,7 @@ export const HeaderContainer = styled.div`
 export const TitleContainer = styled.div`
       margin-left: 20px;
 
-      @media screen and (max-width: 600px){
+      @media screen and (max-width: 800px){
             display: none;
       }
 `
@@ -43,7 +43,7 @@ export const LogoContainer = styled(Link)`
       display: flex;
 
       @media screen and (max-width: 600px){
-            width: 50px;
+            width: 40px;
             padding: 0;
       }
 ` 
@@ -62,4 +62,8 @@ export const OptionsContainer = styled.div`
 export const OptionLink = styled(Link)`
         padding: 10px 15px;
         cursor: pointer;
+
+        @media screen and (max-width: 400px){
+            padding: 10px 5px;
+      }
 `
