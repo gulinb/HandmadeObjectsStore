@@ -1,11 +1,11 @@
 import React from 'react'
-import {config} from '../../config/config'
+//import {config} from '../../config/config'
 
 import StripeCheckout from 'react-stripe-checkout'
 
 const StripeCheckoutButton = ({price}) => {
     const priceForStripe = price * 100
-    const publishbleKey = config.STRIPE_SECRET_KEY
+    const publishbleKey = process.env.STRIPE_SECRET_KEY
 
 
 const onToken = token => {
