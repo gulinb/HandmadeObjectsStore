@@ -13,7 +13,7 @@ const CheckOutPage = ({cartItems, total}) => (
     <CheckoutPageContainer>
         <CheckoutHeader>
             <HeaderBlock>
-                <span>Product</span>
+                Product
             </HeaderBlock>
             <HeaderBlock>
                 <span>Description</span>

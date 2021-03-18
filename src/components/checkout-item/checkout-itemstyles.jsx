@@ -34,6 +34,5 @@ export const Price = styled.div`
     width: 23%;
 `
 export const RemoveButton = styled.span`
-      padding-left: 12px;
       cursor: pointer;
 `

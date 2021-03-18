@@ -21,6 +21,7 @@ export const CheckoutPageContainer = styled.div`
 export const CheckoutHeader = styled.div`
       width: 100%;
       padding: 10px 0;
+      left: 0px;
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid darkgrey;
@@ -30,10 +31,19 @@ export const HeaderBlock = styled.div`
         width: 23%;
   
         &:last-child {
+
           width: 8%;
+        }
+
+        @media screen and (max-width: 600px){
+            text-align: center;
+            &:last-child {
+            width: 20%;
+        }
         }
 `
 export const TotalStyle = styled.div`
+      display: flex;
       margin-top: 30px;
       margin-left: auto;
       font-size: 36px;

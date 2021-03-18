@@ -12,6 +12,10 @@ export const FooterContainer = styled.div`
     @media screen and (max-width: 480px){
         grid-template-columns: 1fr 1fr;
       }
+
+      @media screen and (max-width: 340px){
+        grid-template-columns: 1fr;
+      }
 `
 
 export const Social = styled.div`
