@@ -1,4 +1,4 @@
-import { convertCollectionsSnapShotToMap, firestore } from '../../firebase/firebase.utils'
+import { getAllCollections } from '../../mySql/mySql.utils'
 import ShopActionTypes from './shop.types'
 
 export const fetchCollectionsStart = () => ({
@@ -15,17 +15,28 @@ export const fetchCollectionsFailure = error => ({
     payload: error
 })
 
+// export const fetchCollectionsStartAsync = () => {
+//     return dispatch => {
+//         const collectionRef = firestore.collection('produse')
+//         dispatch(fetchCollectionsStart())
+
+//         collectionRef.get().then(snapShot => {
+//             const collectionsMap = convertCollectionsSnapShotToMap(snapShot)
+//             dispatch(fetchCollectionsSuccess(collectionsMap))
+//         }).catch(error => dispatch(fetchCollectionsFailure(error.message)))
+//     }
+// }
+
 export const fetchCollectionsStartAsync = () => {
-    return dispatch => {
-        const collectionRef = firestore.collection('produse')
+    return async dispatch => {
         dispatch(fetchCollectionsStart())
 
-        collectionRef.get().then(snapShot => {
-            const collectionsMap = convertCollectionsSnapShotToMap(snapShot)
+            const collectionsMap = await getAllCollections()
+
             dispatch(fetchCollectionsSuccess(collectionsMap))
-        }).catch(error => dispatch(fetchCollectionsFailure(error.message)))
-    }
 }
+}
+
 
 export const toggleProductDetails = () => ({
     type: ShopActionTypes.TOGGLE_PRODUCT_DETAILS
@@ -34,4 +45,8 @@ export const toggleProductDetails = () => ({
 export const selectElement = element => ({
     type: ShopActionTypes.SELECTED_ELEMENT,
     payload: element
+})
+
+export const toggleOrderForm = () => ({
+    type: ShopActionTypes.TOGGLE_ORDER_FORM
 })

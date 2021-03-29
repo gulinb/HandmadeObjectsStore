@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     isFetching: false,
     errorMessage: undefined,
     productDetails: true,
-    selectedElement: {}
+    selectedElement: {},
+    orderForm: true
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -37,7 +38,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
             return{
                 ...state,
                 selectedElement: action.payload
-            }    
+            }
+        case ShopActionTypes.TOGGLE_ORDER_FORM:
+            return{
+                ...state,
+                orderForm: !state.orderForm
+            }
 
         default:
             return state

@@ -8,11 +8,12 @@ export const CartItemStyles = styled.div`
 `
 
 export const Image = styled.img`
-      width: 30%;
+      width: 90px;
+      height: 70px;
 `
 
 export const ItemDetails = styled.div`
-      width: 70%;
+      width: 99%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;

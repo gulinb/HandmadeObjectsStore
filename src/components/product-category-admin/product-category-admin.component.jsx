@@ -13,7 +13,7 @@ const ProductCategory = ({collection, history, match}) => {
          <CustomButtonStyle onClick={() => history.push(`${match.url}/add/${id}`)} inverted>ADAUGA PRODUS</CustomButtonStyle>
              <Items>
                 {
-                    elemente.map(element => (<ProductItem key={element.name} element={element} collectionId={id} title={title}/>))
+                    elemente.map(element => (<ProductItem key={element.id} element={element} collectionId={id} title={title}/>))
                 }
              </Items>
           </CollectionPage>

@@ -3,7 +3,7 @@
  import FormInput from '../form-input/form-input.component'
  import CustomButton from '../custom-button/custom-button.component'
  import {ProductData, Button} from './add-edit-form.styles.jsx'
- import {addElement, removeElement} from '../../firebase/firebase.utils'
+ import { addElement, findElement, updateElement } from '../../mySql/mySql.utils'
  import {Redirect} from 'react-router-dom'
 
 
@@ -12,10 +12,9 @@
     constructor(props){
         super(props)
 
-        console.log(props)
-
         props.editElement ?
         this.state={
+            id : props.editElement.id,
             name: props.editElement.name,
             price: props.editElement.price,
             description: props.editElement.description,
@@ -42,30 +41,27 @@
 
     
     handleSubmit = async event => {
-        const id = this.props.collectionId
+        const collectionId = this.props.collectionId
         event.preventDefault()
-        const {name, price, description, dimensions, quantity, imageUrl, imageUrl2, imageUrl3} = this.state
+        const {id, name, price, description, dimensions, quantity, imageUrl, imageUrl2, imageUrl3} = this.state
         const element = {
                         name,
                         price,
                         description,
                         dimensions,
-                        quantity,
                         imageUrl,
                         imageUrl2,
-                        imageUrl3
+                        imageUrl3,
+                        quantity
                         }
-        try{
-            if(this.props.editElement){
-                await removeElement(id, this.props.editElement)
-            }
-            await addElement( id , element)
-            this.setState({redirect: true, name: '', price: '', description: '', dimensions: '', quantity: '', imageUrl: '', imageUrl2: '', imageUrl3: ''})
-        }catch(error){
-            console.log(error)
+        const present = await findElement(collectionId, id)
+        if( present.length !== 0){
+            await updateElement(collectionId, element, id)
+        }else{
+            await addElement( collectionId , element)
         }
+        this.setState({redirect: true, name: '', price: '', description: '', dimensions: '', quantity: '', imageUrl: '', imageUrl2: '', imageUrl3: ''})
 
-      
     }
 
     handleChange = event => {
@@ -73,6 +69,15 @@
         const {value, name} = event.target
 
         this.setState({[name]: value})
+    }
+
+    handleIntChange = event => {
+
+        const {value, name} = event.target
+        
+        let intValue = parseInt(value);
+    
+        this.setState({[name]: isNaN(intValue) ? '' : intValue})
     }
 
     render(){
@@ -95,7 +100,7 @@
                         name='price' 
                         type='price' 
                         value={this.state.price} required 
-                        handleChange={this.handleChange}
+                        handleChange={this.handleIntChange}
                         label='PRICE'
                     />
 
@@ -119,7 +124,7 @@
                         name='quantity' 
                         type='quantity' 
                         value={this.state.quantity} required 
-                        handleChange={this.handleChange}
+                        handleChange={this.handleIntChange}
                         label='QUANTITY'
                     />
 

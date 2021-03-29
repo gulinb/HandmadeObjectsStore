@@ -10,7 +10,7 @@ const CollectionPreview = ({title, elemente, history, routeName, match}) => (
         <TitleStyle onClick={() => history.push(`${match.url}/${routeName}`)}>{title.toUpperCase()}</TitleStyle>
         <Preview>
             {elemente.filter((element, idx) => idx < 4 ).map(element => (
-                <CollectionItem key={element.name} element={element} />
+                <CollectionItem key={element.id} element={element} />
             ))}
         </Preview>
     </CollectionPreviewContainer>

@@ -37,3 +37,8 @@ export const selectElement = createSelector(
     [selectShop],
     shop => shop.selectedElement
 )
+
+export const selectOrderForm = createSelector(
+    [selectShop],
+    shop => shop.orderForm
+)

@@ -3,11 +3,13 @@ import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
 import {selectCartItems, selectCartTotal} from '../../redux/cart/cart.selector'
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
-import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component'
 
-import {CheckoutPageContainer, CheckoutHeader, HeaderBlock, TotalStyle, TestWarning} from './checkout.styles'
+import {CheckoutPageContainer, CheckoutHeader, HeaderBlock, TotalStyle, CustomButtonStyles} from './checkout.styles'
+import { toggleOrderForm } from '../../redux/shop/shop.actions'
+import { selectOrderForm } from '../../redux/shop/shop.selector'
+import OrderDropdown from '../../components/order-dropdown/order-dropdown.component'
 
-const CheckOutPage = ({cartItems, total}) => (
+const CheckOutPage = ({cartItems, total, showOrderForm, orderForm}) => (
     
     
     <CheckoutPageContainer>
@@ -34,22 +36,28 @@ const CheckOutPage = ({cartItems, total}) => (
                 )
         }
         <TotalStyle>
-            <span>Total: ${total}</span>
+            <span>Total: {total} RON</span>
         </TotalStyle>
-        <TestWarning>
-            *Please use the following test credit card for paiments*
-            <br/>
-            4242 4242 4242 4242 - exp: 01/22 - CVV: 123
-        </TestWarning>
-        <StripeCheckoutButton price ={total} />
+        <CustomButtonStyles onClick={() => showOrderForm()}> Comanda !</CustomButtonStyles>
+        {
+            orderForm ?
+            null
+            :
+            <OrderDropdown />
+        }
     </CheckoutPageContainer>
     
     )
 
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
-    total: selectCartTotal
+    total: selectCartTotal,
+    orderForm: selectOrderForm
+})
+
+const mapDispatchToProps = dispatch => ({
+    showOrderForm: () => dispatch(toggleOrderForm())
 })
 
 
-export default connect(mapStateToProps)(CheckOutPage)
+export default connect(mapStateToProps, mapDispatchToProps)(CheckOutPage)

@@ -22,7 +22,7 @@ const CollectionPage = ({collection, productDetails}) => {
             }
              <div className='items'>
                 {
-                    elemente.map(element => (<CollectionItem key={element.name} element={element} />))
+                    elemente.map(element => (<CollectionItem key={element.id} element={element} />))
                 }
              </div>
           </div>

@@ -26,7 +26,7 @@ class AddEditPage extends React.Component {
             <div>
                 <Route exact path={`${match.path}`} component={Produse}/>
                 <Route exact path={`${match.path}/add/:collectionId`} component={AddProduct}/>
-                <Route path={`${match.path}/edit/:collectionId/:elementName`} component={EditProductContainer}/>
+                <Route path={`${match.path}/edit/:collectionId/:elementId`} component={EditProductContainer}/>
             </div>
             :
             <h1>getta hell outta here</h1>

@@ -12,10 +12,7 @@ const EditProduct = ({match, collection}) => {
 
     const {elemente, id} = collection
 
-    console.log(elemente)
-    
-    const element = elemente.find(element => element.name === match.params.elementName)
-    console.log(element)
+    const element = elemente.find(element => parseInt(element.id) === parseInt(match.params.elementId))
 
     return(
     <AddEditForm collectionId={id} editElement={element}/>
