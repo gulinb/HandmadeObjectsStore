@@ -3,7 +3,7 @@
 export const getCollection = async (collection) => {
 
     
-    const response = await fetch('http://blinworx.com/api/'+collection)
+    const response = await fetch('https://blinworx.com/api/'+collection)
     const data = await response.json();
 
             const element = {               
@@ -46,7 +46,7 @@ export const addElement = async (collectionId, element) => {
         body: JSON.stringify(element)
     };
 
-    const response = await fetch('http://blinworx.com/api/'+collectionId, requestOptions);
+    const response = await fetch('https://blinworx.com/api/'+collectionId, requestOptions);
     response.json().then(response => console.log(response)).catch(err => console.log(err))
 
 }
@@ -57,21 +57,21 @@ export const removeElement = async (collectionId, element) => {
         method: 'DELETE'
     }
 
-    const response = await fetch('http://blinworx.com/api/'+collectionId+'/'+element.id, requestOptions);
+    const response = await fetch('https://blinworx.com/api/'+collectionId+'/'+element.id, requestOptions);
     response.json().then(response => console.log(response)).catch(err => console.log(err))
 
     }
 
 
 export const findElement = async (collectionId, elementId) => {
-    const response = await fetch('http://blinworx.com/api/'+collectionId+'/'+elementId)
+    const response = await fetch('https://blinworx.com/api/'+collectionId+'/'+elementId)
     const data = await response.json();
 
     return data
 }
 
 export const findComanda = async (nume, prenume, total) => {
-    const response = await fetch('http://blinworx.com/api/comenzi/'+nume+'/'+prenume+'/'+total)
+    const response = await fetch('https://blinworx.com/api/comenzi/'+nume+'/'+prenume+'/'+total)
     const responseData = await response.json();
 
     return responseData
@@ -84,7 +84,7 @@ export const updateElement = async (collectionId, element, id) => {
         body: JSON.stringify(element)
     };
 
-    const response = await fetch('http://blinworx.com/api/'+collectionId+'/'+id, requestOptions);
+    const response = await fetch('https://blinworx.com/api/'+collectionId+'/'+id, requestOptions);
     const data = await response.json()
     console.log(data)
 }
