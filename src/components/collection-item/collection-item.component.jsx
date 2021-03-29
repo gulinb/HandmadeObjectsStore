@@ -15,7 +15,7 @@ const CollectionItem =({element , addItem, showDetails, selectElement}) => {
         
         <CollectionFooter>
             <Name>{name}</Name>
-            <Price>$ {price}</Price>
+            <Price>{price} Lei</Price>
         </CollectionFooter>    
         <CustomButtonStyle onClick={() => addItem(element)} inverted>Add to Cart</CustomButtonStyle>
     </CollectionItemStyles>

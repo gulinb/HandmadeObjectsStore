@@ -3,7 +3,7 @@ import CustomButton from '../../components/custom-button/custom-button.component
 
 
 export const CheckoutPageContainer = styled.div`
-    width: 55%;
+    width: 99%;
     min-height: 90vh;
     display: flex;
     flex-direction: column;

@@ -106,7 +106,7 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                         type='adresa' 
                         value={this.state.adresa} required 
                         handleChange={this.handleChange}
-                        label='ADRESA : strada, numar, bloc, apartament ...'
+                        label='ADRESA : str. , nr. , bl. , ap. ...'
                     />
 
                     <FormInput 
@@ -141,10 +141,16 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                         label='ADRESA DE EMAIL'
                     />
                     
+                    <label for="card">
                         <input type="radio" id="card" name="modalitatePlata" value="card" onChange={this.handleChange}></input>
-                        <label for="card">Plata online cu card</label><br></br>
+                        Plata online cu card
+                    </label>
+                    <br></br>
+                    <label for="ramburs">
                         <input type="radio" id="ramburs" name="modalitatePlata" value="ramburs" onChange={this.handleChange}></input>
-                        <label for="ramburs">Plata la livrare</label><br></br>
+                        Plata la livrare
+                    </label>
+                    <br></br>
                     
                     
                     <Button>

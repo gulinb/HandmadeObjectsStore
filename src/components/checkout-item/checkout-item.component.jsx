@@ -17,7 +17,7 @@ return (
             <Value>{quantity}</Value>
             <Arrow onClick={() => addItem(cartItem)}>&#10095;</Arrow>
         </Quantity>
-        <Price>${price}</Price>
+        <Price>{price} Lei</Price>
         <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
     </CheckoutItemStyles>
 )

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ProductData = styled.div`
-    width: 380px;
+    width: 95%;
     display: flex;
     padding-right: 10px;
     flex-direction: column;

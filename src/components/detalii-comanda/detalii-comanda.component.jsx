@@ -5,7 +5,7 @@ import {createStructuredSelector} from 'reselect'
 import CartItem from '../cart-item/cart-item.component'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {CartItemsStyles, EmptyMessage} from './detalii-comanda.styles'
+import {CartItemsStyles, EmptyMessage, Total} from './detalii-comanda.styles'
 
 const DetaliiComanda = ({cartItems, total}) => {
 
@@ -22,7 +22,7 @@ const DetaliiComanda = ({cartItems, total}) => {
                 : 
                 <EmptyMessage>Your cart is empty</EmptyMessage>
             }
-            <h2>Total : {total} RON</h2>
+            <Total>Total : {total} Lei</Total>
         </CartItemsStyles>
     )
 }

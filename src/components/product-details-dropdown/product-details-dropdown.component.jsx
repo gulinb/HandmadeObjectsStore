@@ -63,7 +63,7 @@ class ProductDetailsDropdown extends React.Component {
                         {description}
                     </Description>
                     <Dimensions><h3>Dimensiuni : {dimensions} mm</h3></Dimensions>
-                    <Price><h2>Pret: {price} RON</h2></Price>
+                    <Price><h2>Pret: {price} Lei</h2></Price>
                     <Quantity><h3>Cantitate disponibila : {quantity} buc. </h3></Quantity>
                 </Right>
             </Elemente>

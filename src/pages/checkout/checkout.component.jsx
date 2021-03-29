@@ -36,7 +36,7 @@ const CheckOutPage = ({cartItems, total, showOrderForm, orderForm}) => (
                 )
         }
         <TotalStyle>
-            <span>Total: {total} RON</span>
+            <span>Total: {total} Lei</span>
         </TotalStyle>
         <CustomButtonStyles onClick={() => showOrderForm()}> Comanda !</CustomButtonStyles>
         {
