@@ -14,5 +14,5 @@ margin: 50px auto;
 `
 
 export const Total = styled.h2`
-    padding-bottom:30px
+    padding-bottom:30px;
 `
