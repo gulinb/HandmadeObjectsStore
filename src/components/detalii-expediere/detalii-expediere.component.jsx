@@ -46,13 +46,13 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                         telefon,
                         adresaEmail,
                         modalitatePlata,
-                        total,
+                        total: total+20,
                         comandaProcesata
                         }
 
 
        await addElement('comenzi', comanda)
-       const comandaPlasata = await findComanda(nume, prenume, total)
+       const comandaPlasata = await findComanda(nume, prenume, total+20)
 
        console.log(comandaPlasata[0])
        
@@ -141,6 +141,7 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                         label='ADRESA DE EMAIL'
                     />
                     
+                    <h3>Alege metoda de plata : </h3>
                     <label for="card">
                         <input type="radio" id="card" name="modalitatePlata" value="card" onChange={this.handleChange}></input>
                         Plata online cu card
@@ -148,7 +149,7 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                     <br></br>
                     <label for="ramburs">
                         <input type="radio" id="ramburs" name="modalitatePlata" value="ramburs" onChange={this.handleChange}></input>
-                        Plata la livrare
+                        Plata ramburs
                     </label>
                     <br></br>
                     
@@ -156,7 +157,7 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                     <Button>
                     <CustomButton type='submit'>
                 
-                        ADD</CustomButton>
+                        Finalizeaza comanda!</CustomButton>
                     </Button>
                 </form>
             </ProductData>

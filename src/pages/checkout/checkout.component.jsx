@@ -32,11 +32,11 @@ const CheckOutPage = ({cartItems, total, showOrderForm, orderForm}) => (
         </CheckoutHeader>
         {
             cartItems.map( cartItem => 
-                    <CheckoutItem key={cartItem.name} cartItem={cartItem} />
+                    <CheckoutItem key={cartItem.id} cartItem={cartItem} />
                 )
         }
         <TotalStyle>
-            <span>Total: {total} Lei</span>
+            <span>Total: {total} Lei + transport 20 Lei</span>
         </TotalStyle>
         <CustomButtonStyles onClick={() => showOrderForm()}> Comanda !</CustomButtonStyles>
         {

@@ -3,7 +3,7 @@
 export const getCollection = async (collection) => {
 
     
-    const response = await fetch('https://blinworx.com/api/'+collection)
+    const response = await fetch('https://blinworx.com/api/produse/'+collection)
     const data = await response.json();
 
             const element = {               
@@ -38,7 +38,7 @@ export const getAllCollections = async () => {
     })
 }
 
-export const addElement = async (collectionId, element) => {
+export const addElement = async (element) => {
     
     const requestOptions = {
         method: 'POST',
@@ -46,25 +46,25 @@ export const addElement = async (collectionId, element) => {
         body: JSON.stringify(element)
     };
 
-    const response = await fetch('https://blinworx.com/api/'+collectionId, requestOptions);
+    const response = await fetch('https://blinworx.com/api/produse', requestOptions);
     response.json().then(response => console.log(response)).catch(err => console.log(err))
 
 }
 
-export const removeElement = async (collectionId, element) => {
+export const removeElement = async (element) => {
   
     const requestOptions = {
         method: 'DELETE'
     }
 
-    const response = await fetch('https://blinworx.com/api/'+collectionId+'/'+element.id, requestOptions);
+    const response = await fetch('https://blinworx.com/api/produse/'+element.id, requestOptions);
     response.json().then(response => console.log(response)).catch(err => console.log(err))
 
     }
 
 
 export const findElement = async (collectionId, elementId) => {
-    const response = await fetch('https://blinworx.com/api/'+collectionId+'/'+elementId)
+    const response = await fetch('https://blinworx.com/api/produse/'+collectionId+'/'+elementId)
     const data = await response.json();
 
     return data
@@ -77,14 +77,14 @@ export const findComanda = async (nume, prenume, total) => {
     return responseData
 }
 
-export const updateElement = async (collectionId, element, id) => {
+export const updateElement = async (element, id) => {
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(element)
     };
 
-    const response = await fetch('https://blinworx.com/api/'+collectionId+'/'+id, requestOptions);
+    const response = await fetch('https://blinworx.com/api/produse/'+id, requestOptions);
     const data = await response.json()
     console.log(data)
 }

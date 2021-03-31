@@ -15,6 +15,7 @@
         props.editElement ?
         this.state={
             id : props.editElement.id,
+            category: props.editElement.category,
             name: props.editElement.name,
             price: props.editElement.price,
             description: props.editElement.description,
@@ -42,9 +43,11 @@
     
     handleSubmit = async event => {
         const collectionId = this.props.collectionId
+        const category = this.props.collectionId
         event.preventDefault()
         const {id, name, price, description, dimensions, quantity, imageUrl, imageUrl2, imageUrl3} = this.state
         const element = {
+                        category,
                         name,
                         price,
                         description,
@@ -56,9 +59,9 @@
                         }
         const present = await findElement(collectionId, id)
         if( present.length !== 0){
-            await updateElement(collectionId, element, id)
+            await updateElement(element, id)
         }else{
-            await addElement( collectionId , element)
+            await addElement(element)
         }
         this.setState({redirect: true, name: '', price: '', description: '', dimensions: '', quantity: '', imageUrl: '', imageUrl2: '', imageUrl3: ''})
 

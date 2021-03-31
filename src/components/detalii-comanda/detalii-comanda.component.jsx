@@ -17,12 +17,12 @@ const DetaliiComanda = ({cartItems, total}) => {
             {
                 cartItems.length
                 ? (cartItems.map(cartItem => (
-                    <CartItem key={cartItem.name} element={cartItem} />
+                    <CartItem key={cartItem.id} element={cartItem} />
                 )))
                 : 
                 <EmptyMessage>Your cart is empty</EmptyMessage>
             }
-            <Total>Total : {total} Lei</Total>
+            <Total>Total : {total+20} Lei</Total>
         </CartItemsStyles>
     )
 }

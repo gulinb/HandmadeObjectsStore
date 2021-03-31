@@ -10,5 +10,6 @@ export const ProductData = styled.div`
 export const Button = styled.div`
         display: flex;
         justify-content: space-between;
+        padding-top: 30px;
 `
  

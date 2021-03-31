@@ -14,7 +14,7 @@ const ProductItem =({element, collectionId, history, match, title}) => {
             <Price>{price} Lei</Price>
         </CollectionFooter>    
         <CustomButtonStyle onClick={() => history.push(`${match.url}/edit/${title}/${id}`)} inverted>Edit</CustomButtonStyle>
-        <CustomButtonStyle2 onClick={async () => await removeElement(collectionId, element)} inverted>Remove</CustomButtonStyle2>
+        <CustomButtonStyle2 onClick={async () => await removeElement(element)} inverted>Remove</CustomButtonStyle2>
     </CollectionItemStyles>
     )
 }
