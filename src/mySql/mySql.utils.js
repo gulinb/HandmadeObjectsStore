@@ -38,7 +38,7 @@ export const getAllCollections = async () => {
     })
 }
 
-export const addElement = async (element) => {
+export const addElement = async (collectionId, element) => {
     
     const requestOptions = {
         method: 'POST',
@@ -46,7 +46,7 @@ export const addElement = async (element) => {
         body: JSON.stringify(element)
     };
 
-    const response = await fetch('https://blinworx.com/api/produse', requestOptions);
+    const response = await fetch('https://blinworx.com/api/'+collectionId, requestOptions);
     response.json().then(response => console.log(response)).catch(err => console.log(err))
 
 }

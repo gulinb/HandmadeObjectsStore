@@ -61,7 +61,7 @@
         if( present.length !== 0){
             await updateElement(element, id)
         }else{
-            await addElement(element)
+            await addElement('produse', element)
         }
         this.setState({redirect: true, name: '', price: '', description: '', dimensions: '', quantity: '', imageUrl: '', imageUrl2: '', imageUrl3: ''})
 
