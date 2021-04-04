@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const ComenziNoiContainer = styled.div`
+export const ComenziProcesateContainer = styled.div`
     width: 100%;
 
     display: flex;

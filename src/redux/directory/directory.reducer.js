@@ -36,22 +36,22 @@ const INITIAL_STATE = {
           title: 'brose',
           imageUrl: 'https://scontent.ftsr1-2.fna.fbcdn.net/v/t1.0-9/160186492_2820257424879397_8421494508942368869_o.jpg?_nc_cat=105&ccb=1-3&_nc_sid=a26aad&_nc_ohc=OK6W1CCt0NsAX-c1Shm&_nc_ht=scontent.ftsr1-2.fna&oh=c4d1e3dc247f5b515edd4650f5015a92&oe=6088BE82',
           size: 'large',
-          id: 5,
+          id: 6,
           linkUrl: 'shop/brose'
         },
         {
           title: 'decoratiuni',
           imageUrl: 'https://scontent.ftsr1-1.fna.fbcdn.net/v/t1.0-9/127236471_2740162152888925_4905100879650176767_o.jpg?_nc_cat=106&ccb=1-3&_nc_sid=a26aad&_nc_ohc=CVEjJtrkgcMAX-xu5ma&_nc_ht=scontent.ftsr1-1.fna&oh=7de2c2d03587da5855e2f8d70ad73345&oe=6087814F',
           size: 'large',
-          id: 5,
+          id: 7,
           linkUrl: 'shop/decoratiuni'
         },
         {
-          title: 'altele...',
+          title: 'altele',
           imageUrl: 'https://scontent.ftsr1-2.fna.fbcdn.net/v/t1.0-9/128351020_2744160592489081_2894875506072891182_o.jpg?_nc_cat=107&ccb=1-3&_nc_sid=a26aad&_nc_ohc=dvrsnoi8ZuIAX-kIIbc&_nc_ht=scontent.ftsr1-2.fna&oh=636d08ddd04c1a2ed94c5be32acb65fc&oe=60883C0C',
           size: 'large',
-          id: 5,
-          linkUrl: 'shop/altele...'
+          id: 8,
+          linkUrl: 'shop/altele'
         }
       ]
 }

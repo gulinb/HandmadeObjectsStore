@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const ComenziNoiContainer = styled.div`
+export const ComandaContainer = styled.div`
     width: 100%;
 
     display: flex;
@@ -10,7 +10,7 @@ export const ComenziNoiContainer = styled.div`
   
 `
 
-export const ComenziHeader = styled.div`
+export const ComandaHeader = styled.div`
       width: 100%;
       padding: 5px 0;
       left: 0px;

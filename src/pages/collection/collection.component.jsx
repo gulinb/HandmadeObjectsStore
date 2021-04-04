@@ -22,7 +22,14 @@ const CollectionPage = ({collection, productDetails}) => {
             }
              <div className='items'>
                 {
-                    elemente.map(element => (<CollectionItem key={element.id} element={element} />))
+                    elemente.map(element => {
+                        if(element.quantity > 0)
+                            return(
+                                <CollectionItem key={element.id} element={element} />
+                                )
+                            return []
+                            }
+                            )
                 }
              </div>
           </div>

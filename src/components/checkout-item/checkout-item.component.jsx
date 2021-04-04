@@ -1,11 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {clearItemFromCart, addItem, removeItem} from '../../redux/cart/cart.actions.js'
+import {findElement} from '../../mySql/mySql.utils'
 
 import {CheckoutItemStyles, ImageContainer, Image, Name, Quantity, Arrow, Value, Price, RemoveButton} from './checkout-itemstyles'
 
 const CheckoutItem = ({cartItem, clearItem, addItem, removeItem}) => {
-    const {name, imageUrl, price, quantity} = cartItem
+    const {id, category, name, imageUrl, price, quantity} = cartItem  
+    
+    const handleChange = async () => {
+        let dbItem = async () => { 
+            const avb = await findElement(category, id)
+            console.log(avb[0].quantity)
+            console.log(quantity)
+            if(avb[0].quantity > quantity)
+            return true
+            return false        
+        } 
+        let availability = await dbItem()
+        console.log(availability)
+        if(availability)
+            addItem(cartItem)
+    }
+    
 return (
     <CheckoutItemStyles>
         <ImageContainer>
@@ -15,7 +32,7 @@ return (
         <Quantity>
             <Arrow onClick={() => removeItem(cartItem)}>&#10094;</Arrow>
             <Value>{quantity}</Value>
-            <Arrow onClick={() => addItem(cartItem)}>&#10095;</Arrow>
+            <Arrow onClick={handleChange}>&#10095;</Arrow>
         </Quantity>
         <Price>{price} Lei</Price>
         <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>

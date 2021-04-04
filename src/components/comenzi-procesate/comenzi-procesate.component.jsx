@@ -1,14 +1,13 @@
 import React from 'react'
 import { createStructuredSelector } from 'reselect'
-import { selectComenziNoi } from '../../redux/comenzi/comenzi.selector'
-import {ComenziNoiContainer, ComenziHeader, IDBlock, NumeBlock, PrenumeBlock, AdresaBlock, OrasBlock, JudetBlock, TelefonBlock, EmailBlock, PlataBlock, TotalBlock, DataBlock, ProduseBlock, StatusComandaBlock} from './comenzi-noi.styles'
+import { selectComenziProcesate } from '../../redux/comenzi/comenzi.selector'
+import {ComenziProcesateContainer, ComenziHeader, IDBlock, NumeBlock, PrenumeBlock, AdresaBlock, OrasBlock, JudetBlock, TelefonBlock, EmailBlock, PlataBlock, TotalBlock, DataBlock, ProduseBlock, StatusComandaBlock} from './comenzi-procesate.styles'
 import Comanda from '../comanda/comanda.component'
 import { connect } from 'react-redux'
 
-const ComenziNoi = ({comenzi}) => {
-    console.log(comenzi)
-    return(
-            <ComenziNoiContainer>
+const ComenziProcesate = ({comenzi}) => (
+
+            <ComenziProcesateContainer>
                 <ComenziHeader>
                     <IDBlock>
                         ID
@@ -47,19 +46,19 @@ const ComenziNoi = ({comenzi}) => {
                         <span>Produse</span>
                     </ProduseBlock>
                     <StatusComandaBlock>
-                        <span>Comanda Procesata ?</span>
+                        <span>Status Comanda</span>
                     </StatusComandaBlock>                    
                 </ComenziHeader>
                 {
                     comenzi.map(comanda => <Comanda key={comanda.id} comanda={comanda} />)
                 }
-            </ComenziNoiContainer>
-    )
-}
+            </ComenziProcesateContainer>
+)
+
 
 const mapStateToProps = createStructuredSelector({
-    comenzi: selectComenziNoi
+    comenzi: selectComenziProcesate
 })
 
 
-export default connect(mapStateToProps)(ComenziNoi)
+export default connect(mapStateToProps)(ComenziProcesate)

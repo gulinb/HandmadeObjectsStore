@@ -7,11 +7,17 @@ import {CollectionPreviewContainer, TitleStyle, Preview} from './collection-prev
 const CollectionPreview = ({title, elemente, history, routeName, match}) => (
     
     <CollectionPreviewContainer>
-        <TitleStyle onClick={() => history.push(`${match.url}/${routeName}`)}>{title.toUpperCase()}</TitleStyle>
+        <TitleStyle onClick={() => history.push(`${match.url}/${routeName}`)}>{title.toUpperCase()} &#10095;&#10095; </TitleStyle>
         <Preview>
-            {elemente.filter((element, idx) => idx < 4 ).map(element => (
-                <CollectionItem key={element.id} element={element} />
-            ))}
+            {elemente.filter((element, idx) => idx < 4 ).map(element => {
+                if(element.quantity > 0)
+                    return(
+                        <CollectionItem key={element.id} element={element} />
+                    )
+                    return []
+                }
+            )
+            }
         </Preview>
     </CollectionPreviewContainer>
 )

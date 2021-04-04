@@ -2,30 +2,33 @@ import React from 'react'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 import {SignInStyle, Button} from './sign-in.styles'
-import {auth} from '../../firebase/firebase.utils'
-
+import { getUserAdmin } from '../../mySql/mySql.utils'
+import { setCurrentUser } from '../../redux/user/user.actions'
+import { connect } from 'react-redux'
 class SignIn extends React.Component {
 
     constructor(props){
         super(props)
 
         this.state={
-            email: '',
+            username: '',
             password: ''
         }
     }
 
     handleSubmit = async event => {
         event.preventDefault()
-
-        const {email, password} = this.state
-
-        try{
-            await auth.signInWithEmailAndPassword(email, password)
-            this.setState({email: '', password:''})
-        }catch(error){
-            console.log(error)
+        const {setCurrentUser} = this.props
+        const {username, password} = this.state
+        const user = await getUserAdmin(username, password)
+        if(user[0]){
+            setCurrentUser(user[0])
+        }else{
+            alert('Datele introduse sunt gresite!')
         }
+        
+
+
     }
 
     handleChange = event => {
@@ -42,11 +45,11 @@ class SignIn extends React.Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
-                        name='email' 
-                        type='email' 
-                        value={this.state.email} required 
+                        name='username' 
+                        type='username' 
+                        value={this.state.username} required 
                         handleChange={this.handleChange}
-                        label='EMAIL'
+                        label='USERNAME'
                     />
                     
                     <FormInput 
@@ -67,4 +70,8 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+  })
+
+export default connect(null,mapDispatchToProps)(SignIn)

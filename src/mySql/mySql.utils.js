@@ -38,6 +38,27 @@ export const getAllCollections = async () => {
     })
 }
 
+export const getUserAdmin = async (username, password) => {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({username: username, password: password})
+    };
+
+    const user = await fetch('https://blinworx.com/api/userAdmin', requestOptions)
+    const data = await user.json()
+    console.log(data)
+    return data
+}
+
+export const getComenzi = async () => {
+    const comenzi = await fetch('https://blinworx.com/api/comenzi')
+    const data = await comenzi.json(); 
+
+    return data
+}
+
 export const addElement = async (collectionId, element) => {
     
     const requestOptions = {

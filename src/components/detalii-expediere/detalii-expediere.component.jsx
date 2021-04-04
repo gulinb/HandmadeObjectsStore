@@ -5,7 +5,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector'
 import { createStructuredSelector } from 'reselect'
-import { addElement, findComanda } from '../../mySql/mySql.utils'
+import { addElement, findComanda, findElement, updateElement } from '../../mySql/mySql.utils'
 
 
  class DetaliiExpediere extends React.Component {
@@ -27,11 +27,11 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
             comandaProcesata: 0
         }
     }
-    
+
     
     handleSubmit = async event => {
         event.preventDefault()
-        
+        let stillAvailable = true
         const {cartItems, total} = this.props
 
         console.log('cartItems + total')
@@ -50,26 +50,51 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                         comandaProcesata
                         }
 
+        let avb = async() => {
+            for (const item of cartItems) {
+                let dbItem = await findElement(item.category, item.id)
+                console.log(dbItem[0].quantity)
+                console.log(item.quantity)
+                if(dbItem[0].quantity < item.quantity)
+                    stillAvailable = false
+        }
+    }
 
-       await addElement('comenzi', comanda)
-       const comandaPlasata = await findComanda(nume, prenume, total+20)
+    await avb()
 
-       console.log(comandaPlasata[0])
-       
-       cartItems.forEach( async item => {
-           const produsComandat ={
-               idComanda: comandaPlasata[0].id,
-               numeProdus: item.name,
-               pret: item.price,
-               cantitate: item.quantity
-           }
-
-           await addElement('comenziProduse', produsComandat)
-       })
-
-        this.setState({name: '', price: '', description: '', dimensions: '', quantity: '', imageUrl: '', imageUrl2: '', imageUrl3: ''})
+    
+    
+    let executa = async () => {if(stillAvailable){
+        
+        console.log("stillAvailable:"+stillAvailable)
+            await addElement('comenzi', comanda)
+            const comandaPlasata = await findComanda(nume, prenume, total+20)
+            
+            console.log(comandaPlasata[0])
+            
+            cartItems.forEach( async item => {
+                const produsComandat ={
+                    idComanda: comandaPlasata[0].id,
+                    numeProdus: item.name,
+                    pret: item.price,
+                    cantitate: item.quantity
+                }
+                let dbItem = await findElement(item.category, item.id)
+                dbItem[0].quantity = dbItem[0].quantity-item.quantity
+                await updateElement(dbItem[0], item.id)
+                await addElement('comenziProduse', produsComandat)
+            })
+        }else{
+            alert("Unele din produsele selectate nu mai sunt disponibile!\n Comanda nu a fost procesata!")
+        }
 
     }
+
+    await executa()
+
+        this.setState({nume: '',prenume: '',adresa: '',oras: '',judet: '',telefon: '',adresaEmail: '',modalitatePlata: ''})
+    }
+
 
     handleChange = event => {
 
@@ -143,12 +168,12 @@ import { addElement, findComanda } from '../../mySql/mySql.utils'
                     
                     <h3>Alege metoda de plata : </h3>
                     <label for="card">
-                        <input type="radio" id="card" name="modalitatePlata" value="card" onChange={this.handleChange}></input>
+                        <input type="radio" id="card" name="modalitatePlata" value="card" required onChange={this.handleChange}></input>
                         Plata online cu card
                     </label>
                     <br></br>
                     <label for="ramburs">
-                        <input type="radio" id="ramburs" name="modalitatePlata" value="ramburs" onChange={this.handleChange}></input>
+                        <input type="radio" id="ramburs" name="modalitatePlata" value="ramburs" required onChange={this.handleChange}></input>
                         Plata ramburs
                     </label>
                     <br></br>
