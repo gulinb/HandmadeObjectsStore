@@ -42,3 +42,13 @@ export const selectOrderForm = createSelector(
     [selectShop],
     shop => shop.orderForm
 )
+
+export const selectShowMessage = createSelector(
+    [selectShop],
+    shop => shop.showMessage
+)
+
+export const selectMessage = createSelector(
+    [selectShop],
+    shop => shop.message
+)

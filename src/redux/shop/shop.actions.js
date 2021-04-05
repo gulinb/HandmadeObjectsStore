@@ -38,3 +38,12 @@ export const selectElement = element => ({
 export const toggleOrderForm = () => ({
     type: ShopActionTypes.TOGGLE_ORDER_FORM
 })
+
+export const toggleMessage = () => ({
+    type: ShopActionTypes.TOGGLE_MESSAGE
+})
+
+export const defineMessage = message => ({
+    type: ShopActionTypes.MESSAGE_MESSAGE,
+    payload: message
+})

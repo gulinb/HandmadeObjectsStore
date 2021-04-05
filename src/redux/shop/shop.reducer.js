@@ -7,7 +7,9 @@ const INITIAL_STATE = {
     errorMessage: undefined,
     productDetails: true,
     selectedElement: {},
-    orderForm: true
+    orderForm: true,
+    showMessage: true,
+    message: ''
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -43,6 +45,16 @@ const shopReducer = (state = INITIAL_STATE, action) => {
             return{
                 ...state,
                 orderForm: !state.orderForm
+            }
+        case ShopActionTypes.TOGGLE_MESSAGE:
+            return{
+                ...state,
+                showMessage: !state.showMessage
+            }
+        case ShopActionTypes.MESSAGE_MESSAGE:
+            return{
+                ...state,
+                message: action.payload
             }
 
         default:

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector'
 import { createStructuredSelector } from 'reselect'
 import { addElement, findComanda, findElement, updateElement } from '../../mySql/mySql.utils'
+import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
 
 
  class DetaliiExpediere extends React.Component {
@@ -24,7 +25,9 @@ import { addElement, findComanda, findElement, updateElement } from '../../mySql
             modalitatePlata: '',
             total: '',
             data: '',
-            comandaProcesata: 0
+            comandaProcesata: 0,
+            showMessage: this.props.showMessage,
+            message: ''
         }
     }
 
@@ -32,7 +35,7 @@ import { addElement, findComanda, findElement, updateElement } from '../../mySql
     handleSubmit = async event => {
         event.preventDefault()
         let stillAvailable = true
-        const {cartItems, total} = this.props
+        const {cartItems, total, toggleMessage, defineMessage} = this.props
 
         console.log('cartItems + total')
         console.log(cartItems, total)
@@ -83,11 +86,14 @@ import { addElement, findComanda, findElement, updateElement } from '../../mySql
                 dbItem[0].quantity = dbItem[0].quantity-item.quantity
                 await updateElement(dbItem[0], item.id)
                 await addElement('comenziProduse', produsComandat)
+                defineMessage("Comanda plasata!")
+                
             })
         }else{
-            alert("Unele din produsele selectate nu mai sunt disponibile!\n Comanda nu a fost procesata!")
+            defineMessage("Unele din produsele selectate nu mai sunt disponibile!\n Comanda nu a fost plasata!")
         }
-
+        
+        toggleMessage()
     }
 
     await executa()
@@ -185,6 +191,7 @@ import { addElement, findComanda, findElement, updateElement } from '../../mySql
                         Finalizeaza comanda!</CustomButton>
                     </Button>
                 </form>
+
             </ProductData>
 
         )
@@ -196,4 +203,9 @@ const mapStateToProps = createStructuredSelector({
     total: selectCartTotal
 })
 
-export default connect(mapStateToProps)(DetaliiExpediere)
+const mapDispatchToProps = dispatch => ({
+    toggleMessage: () => dispatch(toggleMessage()),
+    defineMessage: (message) => dispatch(defineMessage(message))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetaliiExpediere)
