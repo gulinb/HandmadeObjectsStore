@@ -7,6 +7,7 @@ import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector
 import { createStructuredSelector } from 'reselect'
 import { addElement, findComanda, findElement, updateElement } from '../../mySql/mySql.utils'
 import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
+import { clearItemFromCart, removeItem } from '../../redux/cart/cart.actions'
 
 
  class DetaliiExpediere extends React.Component {
@@ -31,13 +32,12 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
             awb: ''
         }
     }
-
     
     handleSubmit = async event => {
         event.preventDefault()
         let stillAvailable = true
         let produseInCos = true
-        const {cartItems, total, toggleMessage, defineMessage} = this.props
+        const {cartItems, total, toggleMessage, defineMessage, clearItemFromCart, removeItemFromCart} = this.props
 
         console.log('cartItems + total')
         console.log(cartItems, total)
@@ -60,10 +60,18 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
             if(cartItems[0]){
             for (const item of cartItems) {
                 let dbItem = await findElement(item.category, item.id)
-                console.log(dbItem[0].quantity)
-                console.log(item.quantity)
-                if(dbItem[0].quantity < item.quantity)
+                if(dbItem[0]){
+                if(dbItem[0].quantity < item.quantity){
+                    const no = item.quantity - dbItem[0].quantity
+                    for(var i = 0 ; i<no ; i++){
+                        removeItemFromCart(item)
+                    }
                     stillAvailable = false
+                }
+                }else{
+                    clearItemFromCart(item)
+                    stillAvailable = false
+                }
         }}else{
             produseInCos = false
         }
@@ -96,10 +104,10 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
                 await updateElement(dbItem[0], item.id)
                 await addElement('comenziProduse', produsComandat)
                 defineMessage("Comanda plasata!")
-                
+                clearItemFromCart(item)
             })
         }else{
-            defineMessage("Unele din produsele selectate nu mai sunt disponibile!\n Comanda nu a fost plasata!")
+            defineMessage("Unele din produsele selectate nu mai sunt disponibile! Comanda nu a fost plasata! Cosul a fost actualizat!")
         }}else{
             defineMessage("Nu aveti produse in cos!")
         }
@@ -122,8 +130,11 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
 
     render(){
 
+
+
         return(
             <ProductData>
+            
             <h2>DETALII EXPEDIERE :</h2>
 
                 <form onSubmit={this.handleSubmit}>
@@ -202,9 +213,10 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
                         Finalizeaza comanda!</CustomButton>
                     </Button>
                 </form>
-
+                
             </ProductData>
-
+            
+                
         )
     }
 }
@@ -216,7 +228,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     toggleMessage: () => dispatch(toggleMessage()),
-    defineMessage: (message) => dispatch(defineMessage(message))
+    defineMessage: (message) => dispatch(defineMessage(message)),
+    clearItemFromCart: (item) => dispatch(clearItemFromCart(item)),
+    removeItemFromCart: (item) => dispatch(removeItem(item))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetaliiExpediere)

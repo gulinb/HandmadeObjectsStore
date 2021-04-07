@@ -1,11 +1,5 @@
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import CustomButton from '../custom-button/custom-button.component'
-
-const shrinkLabelStyles = css`
-  top: -14px;
-  font-size: 12px;
-  color: black;
-`
 
 export const ComandaContainer = styled.div`
     width: 100%;
