@@ -59,6 +59,13 @@ export const getComenzi = async () => {
     return data
 }
 
+export const getComenziProduse = async () => {
+    const produse = await fetch('https://blinworx.com/api/comenziProduse')
+    const data = await produse.json()
+
+    return data
+}
+
 export const addElement = async (collectionId, element) => {
     
     const requestOptions = {
@@ -106,6 +113,18 @@ export const updateElement = async (element, id) => {
     };
 
     const response = await fetch('https://blinworx.com/api/produse/'+id, requestOptions);
+    const data = await response.json()
+    console.log(data)
+}
+
+export const updateComanda = async (element, id) => {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(element)
+    };
+
+    const response = await fetch('https://blinworx.com/api/comenzi/'+id, requestOptions);
     const data = await response.json()
     console.log(data)
 }

@@ -1,11 +1,71 @@
 import React from 'react'
-import {ComandaContainer, ComandaHeader, IDBlock, NumeBlock, PrenumeBlock, AdresaBlock, OrasBlock, JudetBlock, TelefonBlock, EmailBlock, PlataBlock, TotalBlock, DataBlock, ProduseBlock, StatusComandaBlock} from './comanda.styles'
+import { connect } from 'react-redux'
+import {  selectProduseComanda } from '../../redux/comenzi/comenzi.selector'
+import {ComandaContainer, ComandaHeader, IDBlock, NumeBlock, PrenumeBlock, AdresaBlock, OrasBlock, JudetBlock, TelefonBlock, EmailBlock, PlataBlock, TotalBlock, DataBlock, ProduseBlock, StatusComandaBlock, AWBBlock, Button, CustomButtonStyle, FormInputStyle} from './comanda.styles'
+import {updateComanda} from '../../mySql/mySql.utils'
 
 
+class Comanda extends React.Component{
+    
+    constructor(props){
+        super(props)
 
-const Comanda = ({comanda}) => { 
+        this.state={
+            id:props.comanda.id,
+            nume: props.comanda.nume,
+            prenume: props.comanda.prenume,
+            adresa: props.comanda.adresa,
+            oras: props.comanda.oras,
+            judet: props.comanda.judet,
+            telefon: props.comanda.telefon,
+            adresaEmail: props.comanda.adresaEmail,
+            modalitatePlata: props.comanda.modalitatePlata,
+            total: props.comanda.total,
+            data: props.comanda.data,
+            awb: props.comanda.awb,
+            comandaProcesata: props.comanda.comandaProcesata
+        }
+    }
 
-const {id, nume, prenume, adresa, oras, judet, telefon, adresaEmail, modalitatePlata, total, data, comandaProcesata} = comanda
+    submitFunction = async event => {
+        event.preventDefault()
+
+        const {id, nume, prenume, adresa, oras, judet, telefon, adresaEmail, modalitatePlata, total, data, awb} = this.state
+
+        const comandaProcesataObj = {
+            nume,
+            prenume,
+            adresa,
+            oras,
+            judet,
+            telefon,
+            adresaEmail,
+            modalitatePlata,
+            total,
+            data,
+            awb,
+            comandaProcesata: true
+        }
+        console.log(comandaProcesataObj)
+
+        await updateComanda(comandaProcesataObj, id)
+
+    }
+
+    handleChange = event => {
+
+        const {value, name} = event.target
+
+        this.setState({[name]: value})
+    }
+
+    render(){
+        
+        const {comanda, produse} = this.props 
+
+        const {id, nume, prenume, adresa, oras, judet, telefon, adresaEmail, modalitatePlata, total, data, awb} = comanda
+        console.log(awb[0])
+
         return(
             <ComandaContainer>
                 <ComandaHeader>
@@ -43,15 +103,35 @@ const {id, nume, prenume, adresa, oras, judet, telefon, adresaEmail, modalitateP
                         <span>{data}</span>
                     </DataBlock>
                     <ProduseBlock>
-                        <span>Produse</span>
+                        {
+                            produse.map(produs => <div>{produs.numeProdus} X {produs.cantitate}</div>)
+                        }
                     </ProduseBlock>
+                    <AWBBlock>
+
+                            <FormInputStyle onChange={this.handleChange} name='awb' 
+                            type='awb' 
+                            value={this.state.awb} required 
+                            handleChange={this.handleChange}
+                            label='AWB'/>
+                        
+                    </AWBBlock>
                     <StatusComandaBlock>
-                        <span>{comandaProcesata}</span>
-                    </StatusComandaBlock>                    
+                        <span>
+                            <Button>
+                                <CustomButtonStyle onClick={this.submitFunction}>OK!</CustomButtonStyle>
+                            </Button>
+                        </span>
+                    </StatusComandaBlock>                  
                 </ComandaHeader>
             </ComandaContainer>
         )
 }
+}
 
 
-export default Comanda
+const mapStateToProps = (state, ownProps) => ({
+    produse: selectProduseComanda(ownProps.comanda.id)(state)
+})
+
+export default connect(mapStateToProps)(Comanda)

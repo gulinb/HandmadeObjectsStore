@@ -12,7 +12,8 @@ import Footer from './components/footer/footer.component'
 import {setCurrentUser} from './redux/user/user.actions'
 import TermeniSiConditiiPage from './pages/termeni-si-conditii-page/termeni-si-conditii-page.component'
 import SignInPage from './pages/admin-page-login/admin-page-login.component'
-import AdminOptionsPage from './pages/admin-options-page/admin-options-page.component'
+import AdminComenziPage from './pages/admin-comenzi-page/admin-comenzi-page.component'
+import AddEditPage from './pages/add-edit-products-page/add-edit-products-page.component'
  
 
 class App extends React.Component {
@@ -34,8 +35,8 @@ class App extends React.Component {
           <Route path='/checkout' component={CheckOutPage} />
           <Route path='/termeni_si_conditii' component={TermeniSiConditiiPage} />
           <Route exact path='/admin' component={SignInPage} />
-          <Route path='/admin/options' component={AdminOptionsPage} />
-          
+          <Route path='/admin/comenzi' component={AdminComenziPage} />
+          <Route path='/admin/produse' component={AddEditPage} />
         </Switch>
         <Footer />
       </div>

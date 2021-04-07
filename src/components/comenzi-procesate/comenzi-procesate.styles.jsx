@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 
 export const ComenziProcesateContainer = styled.div`
-    width: 100%;
-
+    width: 1800px;
+     
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,6 @@ export const ComenziHeader = styled.div`
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid darkgrey;
-      
 `
 export const IDBlock = styled.div`
         width: 100px;
@@ -42,32 +41,32 @@ export const AdresaBlock = styled.div`
 export const OrasBlock = styled.div`
         text-align:center;
         border-right: 1px solid darkgrey;
-        width: 200px;
+        width: 150px;
 `
 export const JudetBlock = styled.div`
         text-align:center;
         border-right: 1px solid darkgrey;
-        width: 200px;
+        width: 150px;
 `
 export const TelefonBlock = styled.div`
         text-align:center;
         border-right: 1px solid darkgrey;
-        width: 250px;
+        width: 150px;
 `
 export const EmailBlock = styled.div`
         text-align:center;
         border-right: 1px solid darkgrey;
-        width: 450px;
+        width: 300px;
 `
 export const PlataBlock = styled.div`
         text-align:center;
         border-right: 1px solid darkgrey;
-        width: 150px;
+        width: 100px;
 `
 export const TotalBlock = styled.div`
         border-right: 1px solid darkgrey;
         text-align:center;
-        width: 100px;
+        width: 80px;
 `
 export const DataBlock = styled.div`
         text-align:center;
@@ -77,9 +76,14 @@ export const DataBlock = styled.div`
 export const ProduseBlock = styled.div`
         text-align:center;
         border-right: 1px solid darkgrey;
-        width: 350px;
+        width: 300px;
 `
 export const StatusComandaBlock = styled.div`
         text-align:center;
-        width: 150px;
+        width: 100px;
+`
+export const AWBBlock = styled.div`
+        border-right: 1px solid darkgrey;
+        text-align:center;
+        width: 250px;
 `

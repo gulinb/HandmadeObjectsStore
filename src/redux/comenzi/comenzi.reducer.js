@@ -3,6 +3,7 @@ import ComenziActionTypes from './comenzi.types'
 const INITIAL_STATE = {
     comenziNoi: null,
     comenziProcesate: null,
+    comenziProduse: null
 }
 
 const comenziReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const comenziReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 comenziProcesate: action.payload
+            }
+        case ComenziActionTypes.FETCH_COMENZIPRODUSE:
+            return {
+                ...state,
+                comenziProduse: action.payload
             }
         default:
             return state

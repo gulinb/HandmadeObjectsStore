@@ -27,7 +27,8 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
             data: '',
             comandaProcesata: 0,
             showMessage: this.props.showMessage,
-            message: ''
+            message: '',
+            awb: ''
         }
     }
 
@@ -35,11 +36,12 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
     handleSubmit = async event => {
         event.preventDefault()
         let stillAvailable = true
+        let produseInCos = true
         const {cartItems, total, toggleMessage, defineMessage} = this.props
 
         console.log('cartItems + total')
         console.log(cartItems, total)
-        const {nume, prenume, adresa, oras, judet, telefon, adresaEmail, modalitatePlata, comandaProcesata,} = this.state
+        const {nume, prenume, adresa, oras, judet, telefon, adresaEmail, modalitatePlata, comandaProcesata, awb} = this.state
         const comanda = {
                         nume,
                         prenume,
@@ -50,16 +52,20 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
                         adresaEmail,
                         modalitatePlata,
                         total: total+20,
+                        awb,
                         comandaProcesata
                         }
 
         let avb = async() => {
+            if(cartItems[0]){
             for (const item of cartItems) {
                 let dbItem = await findElement(item.category, item.id)
                 console.log(dbItem[0].quantity)
                 console.log(item.quantity)
                 if(dbItem[0].quantity < item.quantity)
                     stillAvailable = false
+        }}else{
+            produseInCos = false
         }
     }
 
@@ -67,7 +73,10 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
 
     
     
-    let executa = async () => {if(stillAvailable){
+    let executa = async () => {
+        
+        if(produseInCos){
+        if(stillAvailable){
         
         console.log("stillAvailable:"+stillAvailable)
             await addElement('comenzi', comanda)
@@ -91,6 +100,8 @@ import { defineMessage, toggleMessage } from '../../redux/shop/shop.actions'
             })
         }else{
             defineMessage("Unele din produsele selectate nu mai sunt disponibile!\n Comanda nu a fost plasata!")
+        }}else{
+            defineMessage("Nu aveti produse in cos!")
         }
         
         toggleMessage()

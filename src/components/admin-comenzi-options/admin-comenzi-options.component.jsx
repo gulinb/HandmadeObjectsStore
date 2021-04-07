@@ -2,12 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {createStructuredSelector } from 'reselect'
 import {selectCurrentUser} from '../../redux/user/user.selector'
-import {CustomButtonStyle, Menu} from './admin-options.styles'
+import {CustomButtonStyle, Menu} from './admin-comenzi-options.styles'
 import {withRouter} from 'react-router-dom'
 
 
 
-class AdminOptionsMenu extends React.Component {
+class AdminComenziMenu extends React.Component {
     
 
 
@@ -18,8 +18,8 @@ class AdminOptionsMenu extends React.Component {
         currentUser ?
         <Menu>
 
-            <CustomButtonStyle onClick={() => history.push(`${match.path}/comenzi`)}> COMENZI </CustomButtonStyle>
-            <CustomButtonStyle onClick={() => history.push(`${match.path}/produse`)}> PRODUSE </CustomButtonStyle>
+            <CustomButtonStyle onClick={() => history.push(`${match.path}/comenziNoi`)}> COMENZI NOI </CustomButtonStyle>
+            <CustomButtonStyle onClick={() => history.push(`${match.path}/comenziProcesate`)}> COMENZI PROCESATE </CustomButtonStyle>
         </Menu>
         :
         <div>gete hell outtahere</div>
@@ -35,4 +35,4 @@ const mapStateToProps = createStructuredSelector ({
 
 
 
-export default withRouter(connect(mapStateToProps)(AdminOptionsMenu))
+export default withRouter(connect(mapStateToProps)(AdminComenziMenu))

@@ -29,7 +29,7 @@ class AddEditPage extends React.Component {
                 <Route path={`${match.path}/edit/:collectionId/:elementId`} component={EditProductContainer}/>
             </div>
             :
-            <h1>getta hell outta here</h1>
+            <h1>You are not logged in! You are not supposed to be here!</h1>
         )
 }
 }
