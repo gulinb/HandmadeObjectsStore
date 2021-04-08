@@ -9,7 +9,8 @@ const INITIAL_STATE = {
     selectedElement: {},
     orderForm: true,
     showMessage: true,
-    message: ''
+    message: '',
+    transactionId: ''
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -56,7 +57,11 @@ const shopReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 message: action.payload
             }
-
+        case ShopActionTypes.SET_TRANSACTIONID:
+            return{
+                ...state,
+                transactionId: action.payload
+            }
         default:
             return state
     }

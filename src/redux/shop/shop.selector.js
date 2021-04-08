@@ -52,3 +52,8 @@ export const selectMessage = createSelector(
     [selectShop],
     shop => shop.message
 )
+
+export const selectTransactionId = createSelector(
+    [selectShop],
+    shop => shop.transactionId
+)

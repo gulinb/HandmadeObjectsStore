@@ -47,3 +47,8 @@ export const defineMessage = message => ({
     type: ShopActionTypes.MESSAGE_MESSAGE,
     payload: message
 })
+
+export const setTransactionId = id => ({
+    type: ShopActionTypes.SET_TRANSACTIONID,
+    payload: id
+})

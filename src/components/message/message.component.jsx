@@ -1,20 +1,28 @@
 import React from 'react'
 import {MessageStyles, CloseButton, Text} from './message.styles'
 import {connect} from 'react-redux'
-import { toggleMessage } from '../../redux/shop/shop.actions'
+import { toggleMessage, toggleOrderForm } from '../../redux/shop/shop.actions'
 
 
-const Message = ({message, showMessage}) => (
+const Message = ({message, showMessage, showOrderForm}) => {
+
+    const handleChange = () => {
+        showMessage()
+        showOrderForm()
+    }
+    return(
     <MessageStyles>
-        <CloseButton onClick={() => showMessage()}>X</CloseButton>
+        <CloseButton onClick={handleChange}>X</CloseButton>
         <Text>{message}</Text>
     </MessageStyles>
-)
+    )
+}
 
 
 
 const mapDispatchToProps = dispatch => ({
-    showMessage: () => dispatch(toggleMessage())
+    showMessage: () => dispatch(toggleMessage()),
+    showOrderForm: () => dispatch(toggleOrderForm())
 })
 
 export default connect(null, mapDispatchToProps )(Message)
